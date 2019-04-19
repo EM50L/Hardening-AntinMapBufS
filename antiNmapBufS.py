@@ -10,7 +10,6 @@ lista_blanca = ['8.8.8.8','1.1.1.1','10.8.0.19']
 cmd_banip    = 'iptables -A INPUT -j DROP -s ' #+ip_mala  # -A append pongo la regla al final
 #cmd_banip    = 'iptables -I INPUT 6 -j DROP -s '#+ip_mala  # -I 6 en algunos sistemas hay que insertar las reglas al principio linea 6
 cmd_unbanip  = 'iptables -D INPUT -j DROP -s ' #desbloqueo IP
-
 #debug: print 'tcpdump -c1 -nn -l -s64 '+filtro_pcap
 
 while True:
@@ -33,7 +32,6 @@ while True:
     	ip_out = buffer_ips.pop(0) # saco ip mas antigua del buffer
     	if (ip_out != None):
 	    print "Lista llena saco una ip: ip_out=",ip_out 
-	    os.system("iptables -D INPUT -s " + ip_out + " -j DROP ") #desbloqueo IP
 	    os.system( cmd_unbanip + ip_out ) #desbloqueo IP
 
     except Exception as e:  #except:
